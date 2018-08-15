@@ -1,24 +1,18 @@
-//import https from 'https';
-import http from 'http';
-// import config, {nodeEnv, logstarts} from './config';
+import config from './config';
+import fs from 'fs';
 
-// https.get('https://www.lynda.com', res =>{
-//     console.log(res.statusCode)
-//     res.on('data', chunk => {
-//         console.log(chunk.toString());
-//     })
-// });
+import express from 'express';
+const server = express();
 
+server.listen(config.port,() =>{
+    console.info('express listening on port ', config.port)
+});
 
-// console.log(config, nodeEnv)
-// logstarts("Test")
-
-const server = http.createServer((req, res) =>{
-    res.write('Hello\n');
-    setTimeout(() =>{
-        res.write('I can stream!\n');
-        res.end();
-    },3000);
-})
-
-server.listen(8080)
+server.get('/',(req, res)=>{
+    res.send('Hello Express')
+});
+server.get('/about.html',(req, res)=>{
+    fs.readFile('./about.html',(err,data)=>{
+        res.send(data.toString());
+    });
+});
