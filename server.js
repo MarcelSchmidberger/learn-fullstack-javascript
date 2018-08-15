@@ -11,8 +11,5 @@ server.listen(config.port,() =>{
 server.get('/',(req, res)=>{
     res.send('Hello Express')
 });
-server.get('/about.html',(req, res)=>{
-    fs.readFile('./about.html',(err,data)=>{
-        res.send(data.toString());
-    });
-});
+
+server.use(express.static('public'))
