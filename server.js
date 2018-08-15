@@ -1,4 +1,5 @@
 import config from './config';
+import apiRouter from './api';
 import fs from 'fs';
 
 import express from 'express';
@@ -12,4 +13,5 @@ server.get('/',(req, res)=>{
     res.send('Hello Express')
 });
 
-server.use(express.static('public'))
+server.use(express.static('public'));
+server.use('/api', apiRouter);
