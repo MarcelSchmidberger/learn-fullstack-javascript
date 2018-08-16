@@ -12,8 +12,9 @@ server.use(sassMiddleware({
 }));
 
 server.set('view engine', 'ejs');
+import './serverRender';
 
-server.listen(config.port,() =>{
+server.listen(config.port, config.host,() =>{
     console.info('express listening on port ', config.port);
 });
 
