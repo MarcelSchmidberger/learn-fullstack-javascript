@@ -12,16 +12,21 @@ server.use(sassMiddleware({
 }));
 
 server.set('view engine', 'ejs');
-import './serverRender';
+import serverRender from './serverRender';
 
 server.listen(config.port, config.host,() =>{
     console.info('express listening on port ', config.port);
 });
 
 server.get('/',(req, res)=>{
-    res.render('index',{
-        content: 'Hallo <em>test2</em>'
-    });
+    serverRender()
+        .then(content =>{
+            res.render('index',{
+                content
+            });
+        })
+        .catch(console.error);
+   
 });
 
 server.use(express.static('public'));
