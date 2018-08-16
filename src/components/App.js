@@ -9,7 +9,14 @@ class App extends React.Component{
             pageHeader: 'Naming Contest'
         };
     }
-
+    componentDidMount(){
+        console.log('did Mount');
+        debugger;
+    }
+    componentDidUnMount(){
+        console.log('did Mount');
+        debugger;
+    }
     render(){
         return(
             <div className= "App">
